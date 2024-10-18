@@ -112,29 +112,28 @@ console.log('Exercise 1 correct result: ', [
   { first: 'Johannes', last: 'Kepler', year: 1571, passed: 1630 }
 ])
 
-/*
-Exercise 2: Array.prototype.map()
+// /*
+// Exercise 2: Array.prototype.map()
 
-Map the array of inventors into a new array. This new array should only contain
-objects with the inventors' first and last names.
+// Map the array of inventors into a new array. This new array should only contain
+// objects with the inventors' first and last names.
 
-- For each inventor, return an object in this format: 
-  { first: "First Name", last: "Last Name" }.
-- The new array should be a collection of these objects, each representing an 
-  inventor with only their first and last names.
+// - For each inventor, return an object in this format:
+//   { first: "First Name", last: "Last Name" }.
+// - The new array should be a collection of these objects, each representing an
+//   inventor with only their first and last names.
 
-Hint: Return a new object literal from the callback that looks like:
-      { first: "First Name", last: "Last Name" }
-*/
+// Hint: Return a new object literal from the callback that looks like:
+//       { first: "First Name", last: "Last Name" }
+// */
 
+//create new array that contain only first and last name
 let inventorNames = inventors.map((inventor) => ({
   first: inventor.first,
   last: inventor.last
 }))
 
-// Complete the exercise in the space below:
-
-// Check your work:
+// // Check your work:
 console.log('Exercise 2 my result: ', inventorNames)
 console.log('Exercise 2 correct result: ', [
   { first: 'Albert', last: 'Einstein' },
@@ -151,18 +150,19 @@ console.log('Exercise 2 correct result: ', [
   { first: 'Hanna', last: 'Hammarström' }
 ])
 
-/*
-Exercise 3: Array.prototype.sort()
+// /*
+// Exercise 3: Array.prototype.sort()
 
-Sort the inventors by birth date in ascending order (from those born furthest in
-the past to those born most recently).
-*/
+// Sort the inventors by birth date in ascending order (from those born furthest in
+// the past to those born most recently).
+// */
 
-let sortedByBirthYear = inventors.sort((p, b) => p.year - b.year)
+//adding two parameter bcz we want to compare inventor 1 and inventor 2 and see who is older
+let sortedByBirthYear = inventors.sort(
+  (inVo1, inVo2) => inVo1.year - inVo2.year
+)
 
-// Complete the exercise in the space below:
-
-// Check your work:
+// // Check your work:
 console.log('Exercise 3 my result: ', sortedByBirthYear)
 console.log('Exercise 3 correct result: ', [
   { first: 'Nicolaus', last: 'Copernicus', year: 1473, passed: 1543 },
@@ -179,22 +179,21 @@ console.log('Exercise 3 correct result: ', [
   { first: 'Katherine', last: 'Blodgett', year: 1898, passed: 1979 }
 ])
 
-/* 
-Exercise 4: Array.prototype.find()
+// /*
+// Exercise 4: Array.prototype.find()
 
-Use Array.prototype.find() to identify the inventor with the first name 'Ada' 
-from an array of inventor objects
+// Use Array.prototype.find() to identify the inventor with the first name 'Ada'
+// from an array of inventor objects
 
-- You have an array of objects, each representing an inventor with various 
-  properties including their first name.
-- Utilize the Array.prototype.find() method to locate the object for the 
-  inventor with the first name 'Ada'.
-- Assign the found inventor object to the variable inventorNamedAda
-*/
+// - You have an array of objects, each representing an inventor with various
+//   properties including their first name.
+// - Utilize the Array.prototype.find() method to locate the object for the
+//   inventor with the first name 'Ada'.
+// - Assign the found inventor object to the variable inventorNamedAda
+// */
 
+// this is better than doing a loop and go through each element
 let inventorNamedAda = inventors.find((inventor) => (inventor.first = 'Ada'))
-
-// Complete the exercise in the space below:
 
 // Check your work:
 console.log('Exercise 4 my result: ', inventorNamedAda)
@@ -205,26 +204,24 @@ console.log('Exercise 4 correct result: ', {
   passed: 1852
 })
 
-/*
-Exercise 5: Array.prototype.map()
+// /*
+// Exercise 5: Array.prototype.map()
 
-Use the Array.prototype.map() method to reformat each name in the 'people' 
-array. The goal is to convert names from "Last, First" format to "First Last" 
-format.
+// Use the Array.prototype.map() method to reformat each name in the 'people'
+// array. The goal is to convert names from "Last, First" format to "First Last"
+// format.
 
-Hint: Use the String.prototype.split() method to separate the first and last 
-      names. You can split the string using ', ' as the separator.
-      After splitting the names, rearrange them to the "First Last" format.
-*/
+// Hint: Use the String.prototype.split() method to separate the first and last
+//       names. You can split the string using ', ' as the separator.
+//       After splitting the names, rearrange them to the "First Last" format.
+// */
 
-let firstLast = people.map((withColon) => {
-  let [first, last] = withColon.split(',')
-  return `${first} ${last}`
+firstLast = people.map((separation) => {
+  const firstAndLast = separation.split(', ')
+  return `${firstAndLast[1]} ${firstAndLast[0]}`
 })
 
-// Complete the exercise in the space below:
-
-// Check your work:
+// // Check your work:
 console.log('Exercise 5 my result: ', firstLast)
 console.log('Exercise 5 correct result: ', [
   'Carl Becker',
@@ -269,111 +266,106 @@ console.log('Exercise 5 correct result: ', [
   'William Blake'
 ])
 
-/*
-Exercise 6: Array.prototype.some()
+// /*
+// Exercise 6: Array.prototype.some()
 
-Determine if there is at least one person in the devs array who is 18 years 
-old or older.
+// Determine if there is at least one person in the devs array who is 18 years
+// old or older.
 
-- You have an array of people with their respective ages.
-- Use the Array.prototype.some() method to check if any person in the array is 
-  18 years old or older.
-- Store the result (true or false) in the variable 'isAdultPresent'. 
-*/
+// - You have an array of people with their respective ages.
+// - Use the Array.prototype.some() method to check if any person in the array is
+//   18 years old or older.
+// - Store the result (true or false) in the variable 'isAdultPresent'.
+// */
 
-let isAdultPresent = devs.some(
-  (person) => new Date().getFullYear() - person.year >= 18
-)
+//using date constructor
+isAdultPresent = devs.some((dev) => new Date().getFullYear() - dev.year >= 18)
 
-// Complete the exercise in the space below:
+//without date constructor
+// isAdultPresent = devs.some((dev) => dev.year <= 2005)
 
 // Check your work:
 console.log('Exercise 6 my result: ', isAdultPresent)
 console.log('Exercise 6 correct result: ', true)
 
-/*
-Exercise 7: Array.prototype.every()
+// /*
+// Exercise 7: Array.prototype.every()
 
-Use Array.prototype.every() to determine if every person in the devs array is 
-19 years old or older.
+// Use Array.prototype.every() to determine if every person in the devs array is
+// 19 years old or older.
 
-- You have an array of individuals, each with their year of birth represented
-  by the 'year' property.
-- Use the Array.prototype.every() method to verify if every individual in the
-  array is at least 19 years old.
-- Store the result (true or false) in the variable 'isEveryone19OrOlder'.
-*/
+// - You have an array of individuals, each with their year of birth represented
+//   by the 'year' property.
+// - Use the Array.prototype.every() method to verify if every individual in the
+//   array is at least 19 years old.
+// - Store the result (true or false) in the variable 'isEveryone19OrOlder'.
+// */
 
-let isEveryone19OrOlder = devs.every(
-  (person) => new Date().getFullYear - person.year >= 19
+//using date constructor
+isEveryone19OrOlder = devs.every(
+  (dev) => new Date().getFullYear() - dev.year >= 19
 )
-
-// Complete the exercise in the space below:
+//without date constructor
+// isEveryone19OrOlder = devs.every((dev) => dev.year <= 2004)
 
 // Check your work:
 console.log('Exercise 7 my result: ', isEveryone19OrOlder)
 console.log('Exercise 7 correct result: ', false)
 
-/*
-Exercise 8: Array.prototype.find()
+// /*
+// Exercise 8: Array.prototype.find()
 
-Use Array.prototype.find() to identify and retrieve the comment object with 
-a specific ID 823423 from an array of comment objects.
+// Use Array.prototype.find() to identify and retrieve the comment object with
+// a specific ID 823423 from an array of comment objects.
 
-- Assign the found comment object to the variable 'commentById'.
-*/
+// - Assign the found comment object to the variable 'commentById'.
+// */
 
 let commentById = comments.find((Comment) => Comment.id === 823423)
 
-// Complete the exercise in the space below:
-
-// Check your work:
+// // Check your work:
 console.log('Exercise 8 my result: ', commentById)
 console.log('Exercise 8 correct result: ', { text: 'Super good', id: 823423 })
 
-/*
-Exercise 9: Array.prototype.findIndex()
+// /*
+// Exercise 9: Array.prototype.findIndex()
 
-Determine the index of the comment that has a specific ID 123523 in an array 
-of comment objects.
+// Determine the index of the comment that has a specific ID 123523 in an array
+// of comment objects.
 
-- Store the index in the variable 'idx'.
-*/
+// - Store the index in the variable 'idx'.
+// */
 
 let idx = comments.findIndex((Comment) => Comment.id === 123523)
-
-// Complete the exercise in the space below:
 
 // Check your work:
 console.log('Exercise 9 my result: ', idx)
 console.log('Exercise 9 correct result: ', 3)
 
-/*
-Level Up exercise 1: Array.prototype.reduce()
+// /*
+// Level Up exercise 1: Array.prototype.reduce()
 
-Calculate the combined lifespan of all the inventors using 
-Array.prototype.reduce()
+// Calculate the combined lifespan of all the inventors using
+// Array.prototype.reduce()
 
-- Each object in the array includes these properties: 
-  'first', 'last', 'year' (birth year), and 'passed' (year of death).
-- Use the Array.prototype.reduce() method to calculate the sum of the total 
-  years lived by all the inventors.
-- Store the total sum in the variable 'totalYearsLived'.
+// - Each object in the array includes these properties:
+//   'first', 'last', 'year' (birth year), and 'passed' (year of death).
+// - Use the Array.prototype.reduce() method to calculate the sum of the total
+//   years lived by all the inventors.
+// - Store the total sum in the variable 'totalYearsLived'.
 
-Hints:
+// Hints:
 
-- Inside the reduce callback function, calculate the lifespan of each inventor 
-  (passed - year).
-- Accumulate this lifespan in the 'totalYearsLived' variable.
-- Remember, reduce takes a callback function and an initial value for the 
-  accumulator.
-*/
+// - Inside the reduce callback function, calculate the lifespan of each inventor
+//   (passed - year).
+// - Accumulate this lifespan in the 'totalYearsLived' variable.
+// - Remember, reduce takes a callback function and an initial value for the
+//   accumulator.
+// */
 
 let totalYearsLived = inventors.reduce((total, inventor) => {
   return total + (inventor.passed - inventor.year)
 }, 0)
-
-// Complete the exercise in the space below:
 
 // Check your work:
 console.log('Level Up 1 my result: ', totalYearsLived)
